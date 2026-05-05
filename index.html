@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Agency - Premium SaaS/Agency Landing</title>
+    <script>
+      // Defensive measure for the "Cannot set property fetch of #<Window> which has only a getter" error.
+      // This happens if a library tries to patch fetch in an environment where it's restricted.
+      try {
+        const nativeFetch = window.fetch;
+        if (nativeFetch) {
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get() { return nativeFetch; },
+            set(v) { console.warn('Blocked attempt to overwrite window.fetch'); }
+          });
+        }
+      } catch (e) {
+        // If even this fails, we just let it be
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
